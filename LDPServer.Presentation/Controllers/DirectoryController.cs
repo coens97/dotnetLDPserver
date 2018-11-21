@@ -12,12 +12,17 @@ namespace LDPServer.Presentation.Controllers
 {
     public class DirectoryController : ApiController
     {
+        private RdfDirectory _rdfDirectory;
+
+        public DirectoryController(RdfDirectory rdfDirectory)
+        {
+            _rdfDirectory = rdfDirectory;
+        }
 
         [HttpGet]
         public HttpResponseMessage Index()
         {
-            var rdfdirectory = new RdfDirectory();
-            var result = rdfdirectory.GetDirectory("/");
+            var result = _rdfDirectory.GetDirectory("/");
             var response = Request.CreateResponse(HttpStatusCode.OK, result);
             response.Content = new StringContent(result, Encoding.UTF8, "text/turtle");
             response.Headers.Add("Access-Control-Allow-Credentials", "true");
