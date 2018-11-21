@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Web;
 using System.Web.Http;
 
 namespace LDPServer.Presentation.Controllers
@@ -22,7 +23,8 @@ namespace LDPServer.Presentation.Controllers
         [HttpGet]
         public HttpResponseMessage Index()
         {
-            var result = _rdfRescource.GetDirectoryRescources("");
+            var relativePath = HttpUtility.UrlDecode(HttpContext.Current.Request.Url.AbsolutePath.Substring(1)); 
+            var result = _rdfRescource.GetDirectoryRescources(relativePath);
             var response = Request.CreateResponse((HttpStatusCode)result.Item2);
             response.Content = new StringContent(result.Item1, Encoding.UTF8, "text/turtle");
             response.Headers.Add("Access-Control-Allow-Credentials", "true");
