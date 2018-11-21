@@ -1,25 +1,27 @@
-﻿@prefix : <https://localhost:8443/>.
-@prefix n0: <https://localhost:8443/>.
+﻿@base <https://localhost/>.
+
+@prefix n0: <https://localhost/>.
 @prefix ldp: <http://www.w3.org/ns/ldp#>.
 @prefix terms: <http://purl.org/dc/terms/>.
 @prefix XML: <http://www.w3.org/2001/XMLSchema#>.
-@prefix myp: <https://localhost:8443/mypictures/>.
-@prefix tes: <https://localhost:8443/testfolder/>.
 @prefix st: <http://www.w3.org/ns/posix/stat#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 
-n0:
-    a ldp:BasicContainer, ldp:Container;
-    terms:modified "2018-11-20T12:25:08Z"^^XML:dateTime;
-    ldp:contains myp:, tes:;
-    st:mtime 1542716708.26;
-    st:size 0.
-myp:
-    a ldp:BasicContainer, ldp:Container, ldp:Resource;
-    terms:modified "2018-11-20T12:25:08Z"^^XML:dateTime;
-    st:mtime 1542716708.26;
-    st:size 0.
-tes:
-    a ldp:BasicContainer, ldp:Container, ldp:Resource;
-    terms:modified "2018-11-19T12:15:15Z"^^XML:dateTime;
-    st:mtime 1542629715.85;
-    st:size 0.
+n0: a ldp:BasicContainer,
+      ldp:Container;
+    ldp:contains n0:music,
+                 n0:testfolder;
+    st:mtime "1542716708"^^xsd:int;
+    st:size 0 .
+n0:music a ldp:BasicContainer,
+           ldp:Container,
+           ldp:Resource;
+         st:mtime "1542716758"^^xsd:int;
+         st:size 0 .
+n0:testfolder a ldp:BasicContainer,
+                ldp:Container,
+                ldp:Resource;
+              st:mtime "1542716708"^^xsd:int;
+              st:size 0 .

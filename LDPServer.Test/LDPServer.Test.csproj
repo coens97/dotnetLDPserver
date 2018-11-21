@@ -68,6 +68,10 @@
       <Project>{56da1c3f-a267-4e60-8381-f994274bbc0c}</Project>
       <Name>LDPServer.Business</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LDPServer.Common\LDPServer.Common.csproj">
+      <Project>{00526522-b587-4446-805c-bae02b8884bd}</Project>
+      <Name>LDPServer.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

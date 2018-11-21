@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\RescourceList.cs" />
     <Compile Include="DTO\RescourceMetaData.cs" />
     <Compile Include="Interfaces\IRescourceRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
