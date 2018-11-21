@@ -1,0 +1,34 @@
+﻿@base <https://localhost/>.
+
+@prefix n0: <https://localhost/>.
+@prefix ldp: <http://www.w3.org/ns/ldp#>.
+@prefix terms: <http://purl.org/dc/terms/>.
+@prefix XML: <http://www.w3.org/2001/XMLSchema#>.
+@prefix st: <http://www.w3.org/ns/posix/stat#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+n0: a ldp:BasicContainer,
+      ldp:Container;
+    ldp:contains <https://localhost/anotherpicture.png>,
+                 n0:noextension,
+                 <https://localhost/picture.png>,
+                 <https://localhost/travel.pdf>;
+    st:mtime "1542716708"^^xsd:int;
+    st:size 0 .
+<https://localhost/anotherpicture.png> a <http://www.w3.org/ns/iana/media-types/image/png#Resource>,
+                                         ldp:Resource;
+                                       st:mtime "1542716858"^^xsd:int;
+                                       st:size 299157 .
+n0:noextension a ldp:Resource;
+               st:mtime "1542716758"^^xsd:int;
+               st:size 899157 .
+<https://localhost/picture.png> a <http://www.w3.org/ns/iana/media-types/image/png#Resource>,
+                                  ldp:Resource;
+                                st:mtime "1542716758"^^xsd:int;
+                                st:size 499157 .
+<https://localhost/travel.pdf> a <http://www.w3.org/ns/iana/media-types/application/pdf#Resource>,
+                                 ldp:Resource;
+                               st:mtime "1542716708"^^xsd:int;
+                               st:size 299157 .

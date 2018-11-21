@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
+using System.Web;
 using VDS.RDF;
 using VDS.RDF.Parsing;
 using VDS.RDF.Writing;
@@ -17,6 +19,7 @@ namespace LDPServer.Business
 
             // Empty graph
             var g = new Graph();
+            var usedFileExtensions = new HashSet<string>();
 
             // Set current working directory
             g.BaseUri = new Uri(baseUri);
@@ -76,6 +79,24 @@ namespace LDPServer.Business
                     g.Assert(new Triple(newRescourceNode, rdfType, basicContainer));
                     g.Assert(new Triple(newRescourceNode, rdfType, container));
                 }
+                else
+                {
+                    // Is file
+                    // If new file extension, add namespace
+                    var fileExtension = Path.GetExtension(iterRescource.Name);
+                    if (!string.IsNullOrWhiteSpace(fileExtension))
+                    {
+                        if (usedFileExtensions.Add(fileExtension))
+                        {
+                            string mimeType = MimeMapping.GetMimeMapping(iterRescource.Name);
+                            g.NamespaceMap.AddNamespace(fileExtension, new Uri($"http://www.w3.org/ns/iana/media-types/{mimeType}#"));
+                        }
+                        // Link rescource type to file
+                        var rescourceType = g.CreateUriNode(fileExtension + ":Resource");
+                        g.Assert(new Triple(newRescourceNode, rdfType, rescourceType));
+                    }
+
+                }
                 g.Assert(new Triple(newRescourceNode, rdfType, rescoure));
 
                 // Set other metadata
@@ -87,7 +108,7 @@ namespace LDPServer.Business
                 g.Assert(new Triple(newRescourceNode, size, newRescourceSizeNode));
             }
 
-            return StringWriter.Write(g, rdfWriter);
+            return VDS.RDF.Writing.StringWriter.Write(g, rdfWriter);
         }
     }
 }
