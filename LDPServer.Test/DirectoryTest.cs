@@ -11,10 +11,10 @@ namespace LDPServer.Test
         [TestMethod]
         public void TestFoldersResult()
         {
-            var rdfdirectory = new RdfDirectory();
+            var rdfdirectory = new RescourcesService();
             string expectedResult = File.ReadAllText("Testvectors/directorylist.ttl");
 
-            string result = rdfdirectory.GetDirectory("/");
+            string result = rdfdirectory.GetDirectoryRescources("/");
             Assert.AreEqual(expectedResult, result);
         }
     }

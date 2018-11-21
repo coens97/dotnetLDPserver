@@ -1,28 +1,24 @@
-﻿using System;
+﻿using LDPServer.Common.DTO;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VDS.RDF;
 using VDS.RDF.Parsing;
 using VDS.RDF.Writing;
 
 namespace LDPServer.Business
 {
-    public class RdfDirectory
+    public class RdfService
     {
-        public string GetDirectory(string path)
+        public string RescourcesToText(string baseUri, IEnumerable<RescourceMetaData> recources)
         {
-            // Turtle is syntax used to describe the directory list
-            var turtleWriter = new CompressingTurtleWriter();
-
+            var rdfWriter = new CompressingTurtleWriter();
             var g = new Graph();
-            g.BaseUri = new Uri("https://localhost:44340/");
+            g.BaseUri = new Uri(baseUri);
             // Clear RDF namespaces
             g.NamespaceMap.Clear();
             // Add LDP namespaces
-            g.NamespaceMap.AddNamespace("n0", new Uri("https://localhost:44340/"));
-            g.NamespaceMap.AddNamespace("tes", new Uri("https://localhost:44340/testfolder"));
+            g.NamespaceMap.AddNamespace("n0", new Uri(baseUri));
+            g.NamespaceMap.AddNamespace("tes", new Uri(baseUri  + "testfolder"));
             g.NamespaceMap.AddNamespace("ldp", new Uri("http://www.w3.org/ns/ldp#"));
             g.NamespaceMap.AddNamespace("terms", new Uri("http://purl.org/dc/terms/"));
             g.NamespaceMap.AddNamespace("XML", new Uri("http://www.w3.org/2001/XMLSchema#"));
@@ -34,7 +30,7 @@ namespace LDPServer.Business
             var container = g.CreateUriNode("ldp:Container");
             var rescoure = g.CreateUriNode("ldp:Resource");
             var contains = g.CreateUriNode("ldp:contains");
-            var rdfType = g.CreateUriNode("rdf:type");            
+            var rdfType = g.CreateUriNode("rdf:type");
             var modified = g.CreateUriNode("terms:modified");
             var mtime = g.CreateUriNode("st:mtime");
             var size = g.CreateUriNode("st:size");
@@ -61,14 +57,7 @@ namespace LDPServer.Business
             g.Assert(new Triple(testfolder, mtime, g.CreateLiteralNode("1542716708", UriFactory.Create(XmlSpecsHelper.XmlSchemaDataTypeInt))));
             g.Assert(new Triple(testfolder, size, g.CreateLiteralNode("0", UriFactory.Create(XmlSpecsHelper.XmlSchemaDataTypeInteger))));
 
-            /*
-var g = new Graph();;
-var ttlparser = new TurtleParser();
-
-//Load using a Filename
-ttlparser.Load(g, "Testvectors/directorylist.ttl");*/
-            return StringWriter.Write(g, turtleWriter);
-
+            return StringWriter.Write(g, rdfWriter);
         }
     }
 }

@@ -10,19 +10,19 @@ using System.Web.Http;
 
 namespace LDPServer.Presentation.Controllers
 {
-    public class DirectoryController : ApiController
+    public class RescourceController : ApiController
     {
-        private RdfDirectory _rdfDirectory;
+        private RescourcesService _rdfRescource;
 
-        public DirectoryController(RdfDirectory rdfDirectory)
+        public RescourceController(RescourcesService rdfRescource)
         {
-            _rdfDirectory = rdfDirectory;
+            _rdfRescource = rdfRescource;
         }
 
         [HttpGet]
         public HttpResponseMessage Index()
         {
-            var result = _rdfDirectory.GetDirectory("/");
+            var result = _rdfRescource.GetDirectoryRescources("/");
             var response = Request.CreateResponse(HttpStatusCode.OK, result);
             response.Content = new StringContent(result, Encoding.UTF8, "text/turtle");
             response.Headers.Add("Access-Control-Allow-Credentials", "true");

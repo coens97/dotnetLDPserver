@@ -11,7 +11,7 @@ using System.Web.Routing;
 
 namespace LDPServer.Presentation
 {
-    public class WebApiApplication : System.Web.HttpApplication
+    public class WebApiApplication : HttpApplication
     {
         protected void Application_Start()
         {
@@ -25,7 +25,8 @@ namespace LDPServer.Presentation
             // Register your Web API controllers.
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
-            builder.RegisterType<RdfDirectory>().AsSelf().InstancePerRequest();
+            builder.RegisterType<RescourcesService>().AsSelf().InstancePerRequest();
+            builder.RegisterType<RdfService>().AsSelf().InstancePerRequest();
 
             // Set the dependency resolver to be Autofac.
             var container = builder.Build();
