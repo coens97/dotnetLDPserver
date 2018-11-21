@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LDPServer.Common.DTO
 {
-    public class RescourceMetaData
+    public class ResourceMetaData
     {
         /// <summary>
         /// Name or relative path of rescource

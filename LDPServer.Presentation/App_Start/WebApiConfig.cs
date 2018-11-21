@@ -17,7 +17,7 @@ namespace LDPServer.Presentation
             config.Routes.MapHttpRoute(
                 name: "Root",
                 routeTemplate: "",
-                defaults: new { controller = "Rescource", action = "Index" }
+                defaults: new { controller = "Resource", action = "Index" }
             );
 
             config.Routes.MapHttpRoute(

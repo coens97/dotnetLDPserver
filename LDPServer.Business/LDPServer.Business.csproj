@@ -57,7 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="RdfService.cs" />
-    <Compile Include="RescourcesService.cs" />
+    <Compile Include="ResourcesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

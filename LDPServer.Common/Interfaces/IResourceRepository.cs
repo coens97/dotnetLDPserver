@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace LDPServer.Common.Interfaces
 {
-    public interface IRescourceRepository
+    public interface IResourceRepository
     {
-        IEnumerable<RescourceMetaData> GetRescourcesOfDirectory(string path);
+        RescourcesDirectory GetRescourcesOfDirectory(string path);
     }
 }

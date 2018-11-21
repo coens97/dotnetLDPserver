@@ -10,11 +10,11 @@ using System.Web.Http;
 
 namespace LDPServer.Presentation.Controllers
 {
-    public class RescourceController : ApiController
+    public class ResourceController : ApiController
     {
-        private RescourcesService _rdfRescource;
+        private ResourcesService _rdfRescource;
 
-        public RescourceController(RescourcesService rdfRescource)
+        public ResourceController(ResourcesService rdfRescource)
         {
             _rdfRescource = rdfRescource;
         }
@@ -22,9 +22,9 @@ namespace LDPServer.Presentation.Controllers
         [HttpGet]
         public HttpResponseMessage Index()
         {
-            var result = _rdfRescource.GetDirectoryRescources("/");
-            var response = Request.CreateResponse(HttpStatusCode.OK, result);
-            response.Content = new StringContent(result, Encoding.UTF8, "text/turtle");
+            var result = _rdfRescource.GetDirectoryRescources("");
+            var response = Request.CreateResponse((HttpStatusCode)result.Item2);
+            response.Content = new StringContent(result.Item1, Encoding.UTF8, "text/turtle");
             response.Headers.Add("Access-Control-Allow-Credentials", "true");
 
             if (Request.Headers.Contains("Referer"))

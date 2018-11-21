@@ -9,13 +9,18 @@ namespace LDPServer.Common.DTO
     public class RescourcesDirectory
     {
         /// <summary>
+        /// Whetever directory exists
+        /// </summary>
+        public bool Exists { get; set; }
+
+        /// <summary>
         /// Folder that contains the rescources
         /// </summary>
-        public RescourceMetaData RootDirectory { get; set; }
+        public ResourceMetaData RootDirectory { get; set; }
 
         /// <summary>
         /// List of rescources of directory
         /// </summary>
-        public IEnumerable<RescourceMetaData> Rescources { get; set; }
+        public IEnumerable<ResourceMetaData> Rescources { get; set; }
     }
 }

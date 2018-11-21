@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LDPServer.Test", "LDPServer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LDPServer.Common", "LDPServer.Common\LDPServer.Common.csproj", "{00526522-B587-4446-805C-BAE02B8884BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LDPServer.Data", "LDPServer.Data\LDPServer.Data.csproj", "{BF4D618C-94E9-43AE-97D5-49761362A913}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{00526522-B587-4446-805C-BAE02B8884BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00526522-B587-4446-805C-BAE02B8884BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00526522-B587-4446-805C-BAE02B8884BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF4D618C-94E9-43AE-97D5-49761362A913}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF4D618C-94E9-43AE-97D5-49761362A913}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF4D618C-94E9-43AE-97D5-49761362A913}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF4D618C-94E9-43AE-97D5-49761362A913}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

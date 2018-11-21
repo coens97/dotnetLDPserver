@@ -98,7 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\RescourceController.cs" />
+    <Compile Include="Controllers\ResourceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -121,6 +121,14 @@
     <ProjectReference Include="..\LDPServer.Business\LDPServer.Business.csproj">
       <Project>{56DA1C3F-A267-4E60-8381-F994274BBC0C}</Project>
       <Name>LDPServer.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LDPServer.Common\LDPServer.Common.csproj">
+      <Project>{00526522-b587-4446-805c-bae02b8884bd}</Project>
+      <Name>LDPServer.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LDPServer.Data\LDPServer.Data.csproj">
+      <Project>{bf4d618c-94e9-43ae-97d5-49761362a913}</Project>
+      <Name>LDPServer.Data</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

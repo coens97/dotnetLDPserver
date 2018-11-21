@@ -21,21 +21,21 @@ namespace LDPServer.Test
             // Input data
             var inputRescources = new RescourcesDirectory
             {
-                RootDirectory = new RescourceMetaData
+                RootDirectory = new ResourceMetaData
                     {
                        LastModificationTime = 1542716708,
                        Size = 0,
                        IsDirectory = true,
                     },
                 Rescources = new[] {
-                    new RescourceMetaData
+                    new ResourceMetaData
                     {
                        Name = "testfolder",
                        LastModificationTime = 1542716708,
                        Size = 0,
                        IsDirectory = true,
                     },
-                    new RescourceMetaData
+                    new ResourceMetaData
                     {
                        Name = "music",
                        LastModificationTime = 1542716758,
@@ -61,35 +61,35 @@ namespace LDPServer.Test
             // Input data
             var inputRescources = new RescourcesDirectory
             {
-                RootDirectory = new RescourceMetaData
+                RootDirectory = new ResourceMetaData
                 {
                     LastModificationTime = 1542716708,
                     Size = 0,
                     IsDirectory = true,
                 },
                 Rescources = new[] {
-                    new RescourceMetaData
+                    new ResourceMetaData
                     {
                        Name = "travel.pdf",
                        LastModificationTime = 1542716708,
                        Size = 299157,
                        IsDirectory = false,
                     },
-                    new RescourceMetaData
+                    new ResourceMetaData
                     {
                        Name = "picture.png",
                        LastModificationTime = 1542716758,
                        Size = 499157,
                        IsDirectory = false,
                     },
-                     new RescourceMetaData
+                     new ResourceMetaData
                     {
                        Name = "anotherpicture.png",
                        LastModificationTime = 1542716858,
                        Size = 299157,
                        IsDirectory = false,
                     },
-                    new RescourceMetaData
+                    new ResourceMetaData
                     {
                        Name = "noextension",
                        LastModificationTime = 1542716758,
