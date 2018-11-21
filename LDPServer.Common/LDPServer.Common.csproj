@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\ResourceList.cs" />
+    <Compile Include="DTO\ResourceDirectory.cs" />
     <Compile Include="DTO\ResourceMetaData.cs" />
     <Compile Include="Interfaces\IResourceRepository.cs" />
     <Compile Include="Interfaces\IDataFolder.cs" />

@@ -21,13 +21,13 @@ namespace LDPServer.Data
             return (int)(time - new DateTime(1970, 1, 1)).TotalSeconds;
         }
 
-        public RescourcesDirectory GetRescourcesOfDirectory(string path)
+        public ResourcesDirectory GetRescourcesOfDirectory(string path)
         {
             var p2 = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             DirectoryInfo di = new DirectoryInfo(_dataFolder.GetDataFolder() + path);
 
             if (!di.Exists) // If folder doesn't exist
-                return new RescourcesDirectory
+                return new ResourcesDirectory
                 {
                     Exists = false
                 };
@@ -57,7 +57,7 @@ namespace LDPServer.Data
                 IsDirectory = false
             });
 
-            return new RescourcesDirectory
+            return new ResourcesDirectory
             {
                 Exists = true,
                 RootDirectory = rootDirectory,

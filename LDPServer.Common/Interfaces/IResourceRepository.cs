@@ -9,6 +9,6 @@ namespace LDPServer.Common.Interfaces
 {
     public interface IResourceRepository
     {
-        RescourcesDirectory GetRescourcesOfDirectory(string path);
+        ResourcesDirectory GetRescourcesOfDirectory(string path);
     }
 }

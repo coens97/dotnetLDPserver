@@ -12,7 +12,7 @@ namespace LDPServer.Business
 {
     public class RdfService
     {
-        public string RescourcesToText(string baseUri, RescourcesDirectory rescource)
+        public string RescourcesToText(string baseUri, ResourcesDirectory rescource)
         {
             // Output format
             var rdfWriter = new CompressingTurtleWriter();

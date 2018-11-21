@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LDPServer.Common.DTO
 {
-    public class RescourcesDirectory
+    public class ResourcesDirectory
     {
         /// <summary>
         /// Whetever directory exists
