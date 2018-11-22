@@ -37,5 +37,10 @@ namespace LDPServer.Business
         {
             return _rescourceRepository.CreateFile(path, filename);
         }
+
+        public void DeleteResource(string path)
+        {
+            _rescourceRepository.DeleteResource(path);
+        }
     }
 }

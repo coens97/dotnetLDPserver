@@ -34,7 +34,7 @@ namespace LDPServer.Presentation.Controllers
             // Relative path 
             var relativePath = GetRelativePath();
 
-            if (relativePath.EndsWith("/") || string.IsNullOrWhiteSpace(relativePath)) // If directory
+            if (IsDirectory(relativePath))
             {
                 return GetDirectoryRescources(relativePath);
             }
@@ -143,7 +143,25 @@ namespace LDPServer.Presentation.Controllers
                 return response;
             }
 
-            return Request.CreateResponse(HttpStatusCode.BadRequest, "Missing Link and Slug headers"); ;
+            return Request.CreateResponse(HttpStatusCode.BadRequest, "Missing Link and Slug headers");
+        }
+
+        /// <summary>
+        /// For DELETE request on any directory or file
+        /// </summary>
+        /// <returns></returns>
+        [ActionName("Index")]
+        [HttpDelete]
+        public HttpResponseMessage IndexDelete()
+        {
+            // Relative path 
+            var relativePath = GetRelativePath();
+
+            _resourceService.DeleteResource(relativePath);
+            // Return OK
+            var response = Request.CreateResponse(HttpStatusCode.OK);
+            response.Content = new StringContent("OK", Encoding.UTF8, "text/plain");
+            return response;
         }
 
         /// <summary>
@@ -179,6 +197,11 @@ namespace LDPServer.Presentation.Controllers
         private string GetRelativePath()
         {
             return HttpUtility.UrlDecode(HttpContext.Current.Request.Url.AbsolutePath.Substring(1));
+        }
+
+        private bool IsDirectory(string relativePath)
+        {
+            return relativePath.EndsWith("/") || string.IsNullOrWhiteSpace(relativePath);
         }
     }
 }

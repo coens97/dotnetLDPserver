@@ -1,9 +1,4 @@
 ﻿using LDPServer.Common.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LDPServer.Common.Interfaces
 {
@@ -12,5 +7,6 @@ namespace LDPServer.Common.Interfaces
         ResourcesDirectory GetRescourcesOfDirectory(string path);
         string CreateDirectory(string path, string folderName);
         string CreateFile(string path, string fileName);
+        void DeleteResource(string path);
     }
 }

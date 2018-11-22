@@ -95,5 +95,18 @@ namespace LDPServer.Data
             File.CreateText(filePath).Dispose(); // Directly close the file
             return fileName;
         }
+
+        public void DeleteResource(string path)
+        {
+            var fullpath = _dataFolder.GetDataFolder() + path;
+            if (Directory.Exists(fullpath))
+            {
+                Directory.Delete(fullpath, true);
+            }
+            else if (File.Exists(fullpath))
+            {
+                File.Delete(_dataFolder.GetDataFolder() + path);
+            }
+        }
     }
 }
