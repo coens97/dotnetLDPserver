@@ -106,14 +106,24 @@ namespace LDPServer.Presentation.Controllers
         { 
             if (Request.Headers.Contains("Link") && Request.Headers.Contains("Slug"))
             {
-                var response = Request.CreateResponse(HttpStatusCode.Created);
+                var response = Request.CreateResponse(HttpStatusCode.Created, "Created");
                 AddCorsHeaders(response);
-                var dirName = Request.Headers.GetValues("Slug").First();
+                var resourceName = Request.Headers.GetValues("Slug").First();
                 var relativePath = GetRelativePath();
 
-                // If directory already exists, a new directory name is generated
-                var newDirName = _resourceService.CreateDirectory(relativePath, dirName);
-                response.Headers.Add("Location", newDirName);
+                var link = Request.Headers.GetValues("Link").First();
+
+                var location = ""; // path to new rescource
+                if (link.Contains("ldp#BasicContainer")) // If creating directory
+                {
+                    // If directory already exists, a new directory name is generated
+                    location = _resourceService.CreateDirectory(relativePath, resourceName) + "/";
+                }
+                else if(link.Contains("ldp#Resource"))
+                {
+                    location = _resourceService.CreateFile(relativePath, resourceName);
+                }
+                response.Headers.Add("Location", location);
                 return response;
             }
 

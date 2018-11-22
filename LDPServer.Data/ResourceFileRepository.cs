@@ -79,5 +79,21 @@ namespace LDPServer.Data
             Directory.CreateDirectory(folderPath);
             return folderName;
         }
+
+        public string CreateFile(string path, string fileName)
+        {
+            var filePath = _dataFolder.GetDataFolder() + path + fileName;
+
+            if (File.Exists(filePath))
+            { // File already exists, make an unique name
+                var newFileName = Guid.NewGuid().ToString().Substring(0, 8) + "-" + fileName;
+                var newFilePath = _dataFolder.GetDataFolder() + path + newFileName;
+                File.CreateText(newFilePath);
+                return newFileName;
+            }
+            // File doesn't exist
+            File.CreateText(filePath).Dispose(); // Directly close the file
+            return fileName;
+        }
     }
 }

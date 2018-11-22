@@ -28,9 +28,14 @@ namespace LDPServer.Business
             return new Tuple<string,int>(_rdfService.RescourcesToText("https://localhost:44340/" + path, directoryResult), 200);
         }
 
-        public string CreateDirectory(string path, string filename)
+        public string CreateDirectory(string path, string foldername)
         {
-            return _rescourceRepository.CreateDirectory(path, filename);
+            return _rescourceRepository.CreateDirectory(path, foldername);
+        }
+
+        public string CreateFile(string path, string filename)
+        {
+            return _rescourceRepository.CreateFile(path, filename);
         }
     }
 }

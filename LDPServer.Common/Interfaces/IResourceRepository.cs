@@ -11,5 +11,6 @@ namespace LDPServer.Common.Interfaces
     {
         ResourcesDirectory GetRescourcesOfDirectory(string path);
         string CreateDirectory(string path, string folderName);
+        string CreateFile(string path, string fileName);
     }
 }
