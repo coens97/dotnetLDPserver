@@ -19,12 +19,6 @@ namespace LDPServer.Presentation
                 routeTemplate: "{*anything}",
                 defaults: new { controller = "Resource", action = "Index" }
             );
-
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
         }
     }
 }
