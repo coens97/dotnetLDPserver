@@ -10,5 +10,6 @@ namespace LDPServer.Common.Interfaces
     public interface IResourceRepository
     {
         ResourcesDirectory GetRescourcesOfDirectory(string path);
+        string CreateDirectory(string path, string folderName);
     }
 }

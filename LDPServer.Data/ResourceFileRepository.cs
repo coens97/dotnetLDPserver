@@ -23,7 +23,6 @@ namespace LDPServer.Data
 
         public ResourcesDirectory GetRescourcesOfDirectory(string path)
         {
-            var p2 = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             DirectoryInfo di = new DirectoryInfo(_dataFolder.GetDataFolder() + path);
 
             if (!di.Exists) // If folder doesn't exist
@@ -63,6 +62,22 @@ namespace LDPServer.Data
                 RootDirectory = rootDirectory,
                 Rescources = directories.Concat(files)
             };
+        }
+
+        public string CreateDirectory(string path, string folderName)
+        {
+            var folderPath = _dataFolder.GetDataFolder() + path + folderName;
+
+            if (Directory.Exists(folderPath))
+            { // Folder already exists, make an unique name
+                var newFolderName = Guid.NewGuid().ToString().Substring(0, 8) + "-" + folderName;
+                var newFolderPath = _dataFolder.GetDataFolder() + path + newFolderName;
+                Directory.CreateDirectory(newFolderPath);
+                return newFolderName;
+            }
+            // Folder doesn't exist
+            Directory.CreateDirectory(folderPath);
+            return folderName;
         }
     }
 }
