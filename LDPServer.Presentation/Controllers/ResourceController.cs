@@ -85,6 +85,22 @@ namespace LDPServer.Presentation.Controllers
         #endregion
 
         /// <summary>
+        /// HEAD requests the headers that are returned if the specified resource 
+        /// would be requested with an HTTP GET method
+        /// </summary>
+        /// <returns></returns>
+        [ActionName("Index")]
+        [HttpHead]
+        public HttpResponseMessage IndexHead()
+        {
+            var response = Request.CreateResponse(HttpStatusCode.OK);
+
+            AddCorsHeaders(response);
+            AddAllowHeader(response);
+            return response;
+        }
+
+        /// <summary>
         /// Options request is used for security, to check which methods and headers are allowed
         /// </summary>
         /// <returns></returns>
@@ -95,8 +111,7 @@ namespace LDPServer.Presentation.Controllers
             var response = Request.CreateResponse(HttpStatusCode.NoContent);
 
             AddCorsHeaders(response);
-            response.Headers.Add("Access-Control-Allow-Headers", "content-type,link,slug");
-            response.Headers.Add("Access-Control-Allow-Methods", "OPTIONS,HEAD,GET,PATCH,POST,PUT,DELETE");
+            AddAllowHeader(response);
             return response;
         }
 
@@ -106,7 +121,8 @@ namespace LDPServer.Presentation.Controllers
         { 
             if (Request.Headers.Contains("Link") && Request.Headers.Contains("Slug"))
             {
-                var response = Request.CreateResponse(HttpStatusCode.Created, "Created");
+                var response = Request.CreateResponse(HttpStatusCode.Created);
+                response.Content = new StringContent("Created", Encoding.UTF8, "text/plain");
                 AddCorsHeaders(response);
                 var resourceName = Request.Headers.GetValues("Slug").First();
                 var relativePath = GetRelativePath();
@@ -148,6 +164,12 @@ namespace LDPServer.Presentation.Controllers
             {
                 response.Headers.Add("Access-Control-Allow-Origin", "*");
             }
+        }
+
+        private void AddAllowHeader(HttpResponseMessage response)
+        {
+            response.Headers.Add("Access-Control-Allow-Headers", "content-type,link,slug");
+            response.Headers.Add("Access-Control-Allow-Methods", "OPTIONS,HEAD,GET,PATCH,POST,PUT,DELETE");
         }
 
         /// <summary>
