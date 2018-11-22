@@ -1,4 +1,5 @@
 ﻿using LDPServer.Business;
+using LDPServer.Common.DTO;
 using LDPServer.Common.Interfaces;
 using System;
 using System.IO;
@@ -84,6 +85,53 @@ namespace LDPServer.Presentation.Controllers
         }
         #endregion
 
+        [ActionName("Index")]
+        [HttpPost]
+        public HttpResponseMessage IndexPost()
+        {
+            var files = HttpContext.Current.Request.Files;
+            var relativePath = GetRelativePath();
+
+            if (Request.Headers.Contains("Link") && Request.Headers.Contains("Slug"))
+            {
+                var response = Request.CreateResponse(HttpStatusCode.Created);
+                response.Content = new StringContent("Created", Encoding.UTF8, "text/plain");
+                AddCorsHeaders(response);
+                var resourceName = Request.Headers.GetValues("Slug").First();
+
+                var link = Request.Headers.GetValues("Link").First();
+
+                var location = ""; // path to new rescource
+                if (link.Contains("ldp#BasicContainer")) // If creating directory
+                {
+                    // If directory already exists, a new directory name is generated
+                    location = _resourceService.CreateDirectory(relativePath, resourceName) + "/";
+                }
+                else if (link.Contains("ldp#Resource"))
+                {
+                    location = _resourceService.CreateFile(relativePath, resourceName);
+                }
+                response.Headers.Add("Location", location);
+                return response;
+            }
+            else if(files.Count > 0)
+            {
+                var filesCollection = Enumerable.Range(0, files.Count)
+                    .Select(x => new UploadFile {
+                        FileName = files[x].FileName,
+                        SaveAs = files[x].SaveAs
+                    });
+
+                _resourceService.UploadFiles(filesCollection, relativePath);
+                // Return OK
+                var response = Request.CreateResponse(HttpStatusCode.OK);
+                response.Content = new StringContent("OK", Encoding.UTF8, "text/plain");
+                return response;
+            }
+
+            return Request.CreateResponse(HttpStatusCode.BadRequest, "Missing Link and Slug headers or attachment");
+        }
+
         /// <summary>
         /// HEAD requests the headers that are returned if the specified resource 
         /// would be requested with an HTTP GET method
@@ -115,36 +163,6 @@ namespace LDPServer.Presentation.Controllers
             return response;
         }
 
-        [ActionName("Index")]
-        [HttpPost]
-        public HttpResponseMessage IndexPost()
-        { 
-            if (Request.Headers.Contains("Link") && Request.Headers.Contains("Slug"))
-            {
-                var response = Request.CreateResponse(HttpStatusCode.Created);
-                response.Content = new StringContent("Created", Encoding.UTF8, "text/plain");
-                AddCorsHeaders(response);
-                var resourceName = Request.Headers.GetValues("Slug").First();
-                var relativePath = GetRelativePath();
-
-                var link = Request.Headers.GetValues("Link").First();
-
-                var location = ""; // path to new rescource
-                if (link.Contains("ldp#BasicContainer")) // If creating directory
-                {
-                    // If directory already exists, a new directory name is generated
-                    location = _resourceService.CreateDirectory(relativePath, resourceName) + "/";
-                }
-                else if(link.Contains("ldp#Resource"))
-                {
-                    location = _resourceService.CreateFile(relativePath, resourceName);
-                }
-                response.Headers.Add("Location", location);
-                return response;
-            }
-
-            return Request.CreateResponse(HttpStatusCode.BadRequest, "Missing Link and Slug headers");
-        }
 
         /// <summary>
         /// For DELETE request on any directory or file

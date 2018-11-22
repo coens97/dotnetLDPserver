@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="DTO\ResourceDirectory.cs" />
     <Compile Include="DTO\ResourceMetaData.cs" />
+    <Compile Include="DTO\UploadFile.cs" />
     <Compile Include="Interfaces\IResourceRepository.cs" />
     <Compile Include="Interfaces\IDataFolder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

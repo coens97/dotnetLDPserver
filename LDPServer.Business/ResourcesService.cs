@@ -2,6 +2,7 @@
 using LDPServer.Common.DTO;
 using LDPServer.Common.Interfaces;
 using System;
+using System.Collections.Generic;
 
 namespace LDPServer.Business
 {
@@ -41,6 +42,11 @@ namespace LDPServer.Business
         public void DeleteResource(string path)
         {
             _rescourceRepository.DeleteResource(path);
+        }
+
+        public void UploadFiles(IEnumerable<UploadFile> files, string path)
+        {
+            _rescourceRepository.UploadFiles(files, path);
         }
     }
 }

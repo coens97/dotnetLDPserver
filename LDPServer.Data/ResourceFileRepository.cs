@@ -1,6 +1,7 @@
 ﻿using LDPServer.Common.DTO;
 using LDPServer.Common.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -106,6 +107,20 @@ namespace LDPServer.Data
             else if (File.Exists(fullpath))
             {
                 File.Delete(_dataFolder.GetDataFolder() + path);
+            }
+        }
+
+        public void UploadFiles(IEnumerable<UploadFile> files, string path)
+        {
+            var datapath = _dataFolder.GetDataFolder() + path;
+            foreach (var upload in files)
+            {
+                var filePath = datapath + upload.FileName;
+                if (File.Exists(filePath))
+                {
+                    filePath = datapath + Guid.NewGuid().ToString().Substring(0, 8) + "-" + upload.FileName;
+                }
+                upload.SaveAs(filePath);
             }
         }
     }
