@@ -1,5 +1,5 @@
 # .NET LDP-server
-![Screenshot](screenshot.png)
+![Screenshot](warp.png)
 This is an implementation of a LDP server that allows to store and download files. The idea is that this server could be used with the [Solid](https://solid.inrupt.com/) platform, where users can choose their own server/service to store their personal data. An example of such a client is [Warp](https://github.com/linkeddata/warp), which is a file-manager that allows to create or delete directories. And it allows to upload or download files.
 
 ## Design
