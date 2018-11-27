@@ -21,6 +21,6 @@ namespace LDPServer.Common.DTO
         /// <summary>
         /// List of rescources of directory
         /// </summary>
-        public IEnumerable<ResourceMetaData> Rescources { get; set; }
+        public IEnumerable<ResourceMetaData> Resources { get; set; }
     }
 }

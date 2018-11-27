@@ -1,12 +1,11 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LDPServer.Business;
 using LDPServer.Common.DTO;
 using LDPServer.Data;
 using LDPServer.Common.Interfaces;
 using Moq;
+using LDPServer.Business.RdfService;
 
 namespace LDPServer.Test
 {
@@ -17,7 +16,7 @@ namespace LDPServer.Test
         public void TestFoldersResult()
         {
             // Service that will be tested
-            var rdfService = new RdfService();
+            var rdfService = new RdfServiceDotNetRdf();
 
             // Text file with expected result
             string expectedResult = File.ReadAllText("Testvectors/directorylist.ttl");
@@ -31,10 +30,10 @@ namespace LDPServer.Test
                        Size = 0,
                        IsDirectory = true,
                     },
-                Rescources = new[] {
+                Resources = new[] {
                     new ResourceMetaData
                     {
-                       Name = "testfolder",
+                       Name = "test folder",
                        LastModificationTime = 1542716708,
                        Size = 0,
                        IsDirectory = true,
@@ -57,7 +56,7 @@ namespace LDPServer.Test
         public void TestFilesResult()
         {
             // Service that will be tested
-            var rdfService = new RdfService();
+            var rdfService = new RdfServiceDotNetRdf();
 
             // Text file with expected result
             string expectedResult = File.ReadAllText("Testvectors/fileslist.ttl");
@@ -71,7 +70,7 @@ namespace LDPServer.Test
                     Size = 0,
                     IsDirectory = true,
                 },
-                Rescources = new[] {
+                Resources = new[] {
                     new ResourceMetaData
                     {
                        Name = "travel.pdf",
@@ -121,7 +120,7 @@ namespace LDPServer.Test
             Assert.IsTrue(result.Exists, "Couldn't find test directory");
             Assert.IsTrue(result.RootDirectory.IsDirectory, "Root directory should be directory");
 
-            var filesAndFolders = result.Rescources.ToList(); // Prevent using iterating over it multiple times
+            var filesAndFolders = result.Resources.ToList(); // Prevent using iterating over it multiple times
 
             Assert.IsTrue(filesAndFolders.Any(), "Directory should not be empty");
 
@@ -147,7 +146,7 @@ namespace LDPServer.Test
             Assert.IsTrue(subresult.Exists, "Couldn't find sub directory");
             Assert.IsTrue(subresult.RootDirectory.IsDirectory, "Sub directory should be directory");
 
-            Assert.IsTrue(subresult.Rescources.Any(x => x.Name == "emptytextfile.txt"),
+            Assert.IsTrue(subresult.Resources.Any(x => x.Name == "emptytextfile.txt"),
                 "Subfolder should contain emptytextfile");
         }
     }

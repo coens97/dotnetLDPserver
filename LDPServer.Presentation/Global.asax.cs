@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Integration.WebApi;
 using LDPServer.Business;
+using LDPServer.Business.RdfService;
 using LDPServer.Common.Interfaces;
 using LDPServer.Data;
 using System;
@@ -28,7 +29,7 @@ namespace LDPServer.Presentation
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
             builder.RegisterType<ResourcesService>().AsSelf().InstancePerRequest();
-            builder.RegisterType<RdfService>().AsSelf().InstancePerRequest();
+            builder.RegisterType<RdfServiceInternal>().As<IRdfService>().InstancePerRequest();
             builder.RegisterType<ResourceFileRepository>().As<IResourceRepository>().InstancePerRequest();
             builder.RegisterType<AppDataFolderProvider>().As<IDataFolder>().SingleInstance();
 

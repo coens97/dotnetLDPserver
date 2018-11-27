@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LDPServer.Common", "LDPServ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LDPServer.Data", "LDPServer.Data\LDPServer.Data.csproj", "{BF4D618C-94E9-43AE-97D5-49761362A913}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RDFCreator", "RDFCreator\RDFCreator\RDFCreator.csproj", "{7F20D4EF-F1B0-4692-917A-39E7BF11FC8A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{BF4D618C-94E9-43AE-97D5-49761362A913}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF4D618C-94E9-43AE-97D5-49761362A913}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF4D618C-94E9-43AE-97D5-49761362A913}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F20D4EF-F1B0-4692-917A-39E7BF11FC8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F20D4EF-F1B0-4692-917A-39E7BF11FC8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F20D4EF-F1B0-4692-917A-39E7BF11FC8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F20D4EF-F1B0-4692-917A-39E7BF11FC8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

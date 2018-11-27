@@ -56,7 +56,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RdfService.cs" />
+    <Compile Include="RdfService\RdfServiceDotNetRdf.cs" />
+    <Compile Include="RdfService\RdfServiceInternal.cs" />
     <Compile Include="ResourcesService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -67,6 +68,10 @@
     <ProjectReference Include="..\LDPServer.Common\LDPServer.Common.csproj">
       <Project>{00526522-B587-4446-805C-BAE02B8884BD}</Project>
       <Name>LDPServer.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RDFCreator\RDFCreator\RDFCreator.csproj">
+      <Project>{7f20d4ef-f1b0-4692-917a-39e7bf11fc8a}</Project>
+      <Name>RDFCreator</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

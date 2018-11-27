@@ -61,7 +61,7 @@ namespace LDPServer.Data
             {
                 Exists = true,
                 RootDirectory = rootDirectory,
-                Rescources = directories.Concat(files)
+                Resources = directories.Concat(files)
             };
         }
 

@@ -3,15 +3,16 @@ using LDPServer.Common.DTO;
 using LDPServer.Common.Interfaces;
 using System;
 using System.Collections.Generic;
+using LDPServer.Business.RdfService;
 
 namespace LDPServer.Business
 {
     public class ResourcesService
     {
-        public RdfService _rdfService;
+        public IRdfService _rdfService;
         public IResourceRepository _rescourceRepository;
 
-        public ResourcesService(RdfService rdfService, IResourceRepository rescourceRepository)
+        public ResourcesService(IRdfService rdfService, IResourceRepository rescourceRepository)
         {
             _rdfService = rdfService;
             _rescourceRepository = rescourceRepository;

@@ -1,4 +1,5 @@
 ﻿using LDPServer.Common.DTO;
+using LDPServer.Common.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,9 +9,9 @@ using VDS.RDF;
 using VDS.RDF.Parsing;
 using VDS.RDF.Writing;
 
-namespace LDPServer.Business
+namespace LDPServer.Business.RdfService
 {
-    public class RdfService
+    public class RdfServiceDotNetRdf : IRdfService
     {
         public string RescourcesToText(string baseUri, ResourcesDirectory rescource)
         {
@@ -61,7 +62,7 @@ namespace LDPServer.Business
             g.Assert(new Triple(n0, size, rootSizeNode));
 
             // Add other rescources
-            foreach (var iterRescource in rescource.Rescources)
+            foreach (var iterRescource in rescource.Resources)
             {
                 var uri = new Uri(baseUri + iterRescource.Name);
 
